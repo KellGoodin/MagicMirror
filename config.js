@@ -1,10 +1,7 @@
-/* Magic Mirror Config Sample
+/* Magic Mirror Config
  *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
- *
- * For more information on how you can configure this file
- * See https://github.com/MichMich/MagicMirror#configuration
+ * By Kelland Goodn
+ * VERDIGRIS TECHNOLOGIES
  *
  */
 
@@ -31,7 +28,7 @@ var config = {
 	locale: "en-US",
 	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
 	timeFormat: 12,
-	units: "metric",
+	units: "imperial",
 	// serverOnly:  true/false/"local" ,
 	// local for armv6l processors, default
 	//   starts serveronly and then starts chrome browser
@@ -45,21 +42,12 @@ var config = {
 		{
 			module: "updatenotification",
 			position: "top_bar"
-		},
+		},			
 		{
 			module: "clock",
 			position: "top_left"
 		},
-		{
-		   	module: "MMM-Tabulator",
-		   	header: "Tabulator Demo",
-		   	position: "middle_third",
-			config: {
-				fileUrl: "/home/pi/MagicMirror/modules/default/MMM-Tabulator/demo.json",     // The local filename or URL to JSON source
-				updateInterval: 60,        // [seconds] Read the file every 3 min
-				maxItems: 15  // Max table rows shown
-			}
-		},	
+		
 		{
 			module: "compliments",
 			position: "top_bar"
@@ -72,19 +60,57 @@ var config = {
 				locationID: "5391959", 
 				appid: "6e2c8b9fbdc9c39dc6d5794d13c7351d"
 			}
-		},  
+		},
 		{
-			module: 'newsfeed',
-			position: 'bottom_center',
+			module: "MMM-ImagesPhotos",
+			position: "bottom_left",
 			config: {
-				bgName: "raspberryPi.png",          // "Example.jpg", the file name of your background image (case sensitive)
-				//videoName: "",       // "hd0924.mov",         // file name of your local video
-				//youTubeID: "GI3rBwqwDbw", // "GI3rBwqwDbw", // ID from any YouTube video. ID comes after the = sign of YouTube url
-				height: "1080px",    // your display's resolution in pixels. Enter in config.js
-				width: "1920px",     // your display's resolution in pixels. Enter in config.js
-    }
-}, 
-			
+				opacity: 0.9,
+				//animationSpeed: 500,
+				//updateInterval: 5000,
+			}			
+		},
+		{
+			module: 'MMM-AirQuality',
+			header: "Air Quality",
+			position: 'bottom_right', // you may choose any location
+			config: {
+			  location: 'california/san-francisco/san-francisco-arkansas-street' // the location to check the index for
+			}
+		},
+		{
+			  module: 'MMM-GoogleDocs-Notes',
+			  header: "Carbon Emissions Data",
+			  position: 'bottom_center',
+			  classes: 'default everyone',
+			  config: {
+				maxNotes: 2,
+				pollFrequency: 5 * 60 * 1000, //5 minutes;
+				showDatePosted: false,
+				dateFormatExact: 'YYYY-MM-DD HH:mm',
+				dateFormatShort: 'HH:mm',
+				notesPrefix: 'MMM-Chart'
+			  }
+			},
+		{
+			 module: "MMM-GoogleSheets",
+			 header: "V-Mirror Sustainability Minimalist",
+			 position: "middle_center",
+			 config: {
+				url: "https://script.google.com/macros/s/AKfycbwoImJbWzmTGLuMAP50eXZSwUDl_PrwPqNmDhez409ewiTwE8rUd95sYxd-RwgjiIql/exec",
+				sheet: "Sheet1",
+				range: "A1:C4",
+				updateInterval: 1, // minutes
+				requestDelay: 250, // ms
+				updateFadeSpeed: 0, // ms
+				cellStyle: "mimic",
+				border: "3px solid #777",
+				stylesFromSheet: ["background-color", "color", "font-weight"],
+				customStyles: ["font-size: 38px", "padding: 6px"],
+				headerStyles: ["font-weight: bold"],
+				//styleFunc: (rowNum, colNum, cellProps) => {if(rowNum%2 == 0){return "background-color:#666;"}} // Colors every other row background
+			}
+		}
 	]
 };
 
