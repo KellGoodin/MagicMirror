@@ -1,0 +1,31 @@
+<div class="wrapper">
+  {% if anyErrors %}
+    {% for parameter, isError in errors %}
+      {% if isError %}
+        <div class="dimmed light small">Missing required parameter: {{parameter}}</div>
+      {% endif %}
+    {% endfor %}
+  {% elif loading %}
+    <div class="dimmed light small">{{ phrases.loading | safe }}</div>
+  {% else %}
+    <div class="table-wrapper">
+      <table class="sheets-table">
+        {% for row in sheetData %}
+          <tr class="sheets-table-row">
+            {% for cell in row %}
+              {% if cell.merge %}
+                <td class="small sheets-table-cell" style="{{cell.style}}" colspan="{{cell.merge_data.colspan}}" rowspan="{{cell.merge_data.rowspan}}"{>
+                  {{cell.value}}
+                </td>
+              {% elif cell.display %}
+                <td class="small sheets-table-cell" style="{{cell.style}}">
+                  {{cell.value}}
+                </td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+</div>
