@@ -1,5 +1,5 @@
 # MagicMirror
-Verdigris MM Tool
+MM Tool
 
 1. The config.js file can also be known as the main file as it is where all of the modules come together and are placed on their sections of the mirror display itself.
 
