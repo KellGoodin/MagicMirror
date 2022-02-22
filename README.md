@@ -15,7 +15,7 @@ MM Tool
 
 7. MMM-AirQuality is a simple air quality display for your area using a link from https://aqicn.org/city/
 
-8. These are the only files that are going to need reconfiguring if you want to change anything, contact me for access to the google sheets and docs for when you would want to mess around with editing those or connecting them to Verdigris API
+8. These are the only files that are going to need reconfiguring if you want to change anything, contact me for access to the google sheets and docs for when you would want to mess around with editing those or connecting them to a certain API
 
 
 
